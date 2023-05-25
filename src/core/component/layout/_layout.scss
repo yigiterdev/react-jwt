@@ -1,0 +1,14 @@
+@import "../../ui/style/media-queries";
+
+.layout-content {
+  margin: 0 auto;
+  max-width: 1200px;
+
+  padding: 48px;
+}
+
+@include for-small-screens {
+  .layout-content {
+    padding: 24px;
+  }
+}

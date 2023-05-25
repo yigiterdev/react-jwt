@@ -1,0 +1,25 @@
+@import "../../core/ui/style/media-queries";
+
+.product-detail__header {
+  display: grid;
+  grid-template-columns: 400px auto;
+  gap: 80px;
+
+  &__image {
+    width: 100%;
+    height: auto;
+
+    border-radius: 8px;
+  }
+}
+
+@include for-small-screens {
+  .product-detail__header {
+    grid-template-columns: 1fr;
+    gap: 32px;
+
+    &__image {
+      width: 100%;
+    }
+  }
+}

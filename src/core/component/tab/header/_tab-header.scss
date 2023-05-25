@@ -1,0 +1,46 @@
+.tab-header {
+  --background-color: 160, 221, 29;
+  --disabled-color: 150, 150, 150;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+
+  color: #fff;
+  background-color: rgba(var(--background-color), 1);
+  outline: none;
+
+  border-radius: 8px;
+
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    color: rgba(var(--active-color), 0.7);
+  }
+}
+
+.tab-header--is-active {
+  background-color: rgba(var(--background-color), 0.8);
+
+  &:focus {
+    color: rgba(var(--active-color), 1);
+  }
+}
+
+.tab-header--is-disabled {
+  color: rgba(var(--disabled-color), 1);
+
+  &:hover {
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    color: rgba(var(--disabled-color), 1);
+  }
+}

@@ -1,0 +1,40 @@
+.button {
+  --button-width: max-content;
+  --button-height: 48px;
+  --button-bg: 160, 221, 29;
+  --button-color: #fff;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--button-width);
+  height: var(--button-height);
+
+  padding: 12px 16px;
+
+  color: var(--button-color);
+  background-color: rgb(var(--button-bg));
+
+  border: none;
+  border-radius: 8px;
+  outline: none;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(var(--button-bg), 0.8);
+  }
+}
+
+.button--is-inactive {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: rgb(var(--button-bg));
+  }
+}
