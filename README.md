@@ -1,6 +1,6 @@
 # React JWT
 
-This project provides basic auth system with axios and json web token. You can try with [live demo](https://react-jwt-yigiterdev.vercel.app/login).
+This project provides basic auth client with axios and json web token. You can try with [live demo](https://react-jwt-yigiterdev.vercel.app/login).
 
 ## Development
 
