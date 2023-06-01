@@ -15,5 +15,4 @@ export interface Product {
   price: number;
   currency_symbol: string;
   arrival_date: string;
-  imageUrl: string;
 }

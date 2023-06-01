@@ -6,6 +6,7 @@ import {calculateAverageScore} from "../util/productUtils";
 import {ROUTES} from "../../core/route/routes";
 import {Rating} from "@mui/material";
 import useGetProductComment from "../../core/util/hook/useGetProductComments";
+import {PRODUCT_IMAGES} from "../dummy-data/productDummyData";
 
 interface ProductCardProps {
   product: Product;
@@ -20,7 +21,11 @@ function ProductCard({product}: ProductCardProps) {
         id: product.id
       })}
       className="product-card">
-      <img className="product-card__image" src={product.imageUrl} alt={product.name} />
+      <img
+        className="product-card__image"
+        src={PRODUCT_IMAGES[product.id - 1]}
+        alt={product.name}
+      />
 
       <div className="product-card__content">
         <h1 className="product-card__content__title">{product.name}</h1>

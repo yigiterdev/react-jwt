@@ -8,6 +8,7 @@ import SimpleLoader from "../../core/component/simple-loader/SimpleLoader";
 import ProductDetailInformation from "./information/ProductDetailInformation";
 import ProductDetailTabs from "./tabs/ProductDetailTabs";
 import {ROUTES} from "../../core/route/routes";
+import {PRODUCT_IMAGES} from "../dummy-data/productDummyData";
 
 function ProductDetail() {
   const {id} = useParams<{id: string}>();
@@ -52,7 +53,7 @@ function ProductDetail() {
       <div className="product-detail__header">
         <img
           className="product-detail__header__image"
-          src={productData.imageUrl}
+          src={PRODUCT_IMAGES[productData.id - 1]}
           alt={productData.name}
         />
 

@@ -1,3 +1,9 @@
+import camera1ImageSrc from "./asset/camera_1.png";
+import camera2ImageSrc from "./asset/camera_2.png";
+import camera3ImageSrc from "./asset/camera_3.png";
+import camera4ImageSrc from "./asset/camera_4.png";
+import camera5ImageSrc from "./asset/camera_5.png";
+import camera6ImageSrc from "./asset/camera_6.png";
 import {ProductComments} from "./productDummyDataTypes";
 
 export const PRODUCT_COMMENTS: ProductComments[] = [
@@ -114,4 +120,13 @@ export const PRODUCT_COMMENTS: ProductComments[] = [
       }
     ]
   }
+];
+
+export const PRODUCT_IMAGES = [
+  camera1ImageSrc,
+  camera2ImageSrc,
+  camera3ImageSrc,
+  camera4ImageSrc,
+  camera5ImageSrc,
+  camera6ImageSrc
 ];
