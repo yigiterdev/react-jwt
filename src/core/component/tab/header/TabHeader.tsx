@@ -8,7 +8,6 @@ type TabHeaderProps = {
   onClick: (index: number) => void;
   isActive: boolean;
   index: number;
-  testid?: string;
 };
 
 function TabHeader({tab, onClick, index, isActive}: TabHeaderProps) {

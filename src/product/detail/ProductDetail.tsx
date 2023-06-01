@@ -9,12 +9,12 @@ import ProductDetailInformation from "./information/ProductDetailInformation";
 import ProductDetailTabs from "./tabs/ProductDetailTabs";
 import {ROUTES} from "../../core/route/routes";
 import {PRODUCT_IMAGES} from "../dummy-data/productDummyData";
+import ProductsEmptyState from "../empty-state/ProductsEmptyState";
 
 function ProductDetail() {
   const {id} = useParams<{id: string}>();
   const [productData, setProductData] = useState<Product | null>(null);
-  const axiosPrivate = useAxiosPrivate();
-  const [isRequestPending, setIsRequestPending] = useState<boolean>(true);
+  const {axiosAPIPrivate, isRequestPending} = useAxiosPrivate();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,8 +26,7 @@ function ProductDetail() {
 
   useEffect(() => {
     if (id) {
-      setIsRequestPending(true);
-      axiosPrivate
+      axiosAPIPrivate
         .get<Product>(`/products/${id}`)
         .then((res) => {
           setProductData(res.data);
@@ -35,34 +34,32 @@ function ProductDetail() {
         .catch((error) => {
           console.log(error);
         });
-
-      setIsRequestPending(false);
     }
-  }, [axiosPrivate, id]);
+  }, [axiosAPIPrivate, id]);
 
   if (isRequestPending) {
     return <SimpleLoader />;
   }
 
-  if (!productData) {
-    return <h1>Product not found</h1>;
+  if (productData) {
+    return (
+      <div className="product-detail">
+        <div className="product-detail__header">
+          <img
+            className="product-detail__header__image"
+            src={PRODUCT_IMAGES[productData.id - 1]}
+            alt={productData.name}
+          />
+
+          <ProductDetailInformation product={productData} />
+        </div>
+
+        <ProductDetailTabs product={productData} />
+      </div>
+    );
   }
 
-  return (
-    <div className="product-detail">
-      <div className="product-detail__header">
-        <img
-          className="product-detail__header__image"
-          src={PRODUCT_IMAGES[productData.id - 1]}
-          alt={productData.name}
-        />
-
-        <ProductDetailInformation product={productData} />
-      </div>
-
-      <ProductDetailTabs product={productData} />
-    </div>
-  );
+  return <ProductsEmptyState />;
 }
 
 export default ProductDetail;

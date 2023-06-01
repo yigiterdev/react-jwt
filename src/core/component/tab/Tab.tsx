@@ -32,7 +32,6 @@ type ControlledTabProps =
 export type TabProps = ControlledTabProps & UncontrolledTabProps;
 
 function Tab({
-  testid,
   items,
   initialActiveTabIndex = 0,
   activeTabIndex: activeTabIndexFromProps,
@@ -63,7 +62,7 @@ function Tab({
         })}
       </div>
 
-      <div className={"tab__body"} data-testid={`${testid}.body`}>
+      <div className={"tab__body"}>
         {
           children[
             activeTabIndexFromProps === undefined

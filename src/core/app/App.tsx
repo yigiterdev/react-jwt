@@ -6,6 +6,7 @@ import RequireUser from "../route/require-user/RequireUser";
 import ProductDetail from "../../product/detail/ProductDetail";
 import Login from "../../login/Login";
 import Layout from "../component/layout/Layout";
+import NotFound from "../../not-found/NotFound";
 
 function App() {
   return (
@@ -29,18 +30,18 @@ function App() {
               </RequireUser>
             }
           />
+
+          <Route
+            path={"*"}
+            element={
+              <RequireUser>
+                <NotFound />
+              </RequireUser>
+            }
+          />
         </Route>
 
         <Route path={ROUTES.LOGIN} element={<Login />} />
-
-        <Route
-          path={"*"}
-          element={
-            <RequireUser>
-              <></>
-            </RequireUser>
-          }
-        />
       </Routes>
     </Suspense>
   );

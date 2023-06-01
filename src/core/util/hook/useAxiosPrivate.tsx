@@ -1,10 +1,11 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import useRefreshToken from "./useRefreshToken";
 import {axiosAPIPrivate} from "../../api/api";
 import {useAuthContext} from "../../context/auth/AuthContext";
 
 const useAxiosPrivate = () => {
   const refreshToken = useRefreshToken();
+  const [isRequestPending, setIsRequestPending] = useState<boolean>(true);
   const {user} = useAuthContext();
 
   useEffect(() => {
@@ -19,7 +20,10 @@ const useAxiosPrivate = () => {
     );
 
     const responseIntercept = axiosAPIPrivate.interceptors.response.use(
-      (response) => response,
+      (response) => {
+        setIsRequestPending(false);
+        return response;
+      },
       async (error) => {
         const prevRequest = error?.config;
         if (error?.response?.status === 403 && !prevRequest?.sent) {
@@ -37,9 +41,12 @@ const useAxiosPrivate = () => {
       axiosAPIPrivate.interceptors.request.eject(requestIntercept);
       axiosAPIPrivate.interceptors.response.eject(responseIntercept);
     };
-  }, [user, refreshToken]);
+  }, [user, refreshToken, isRequestPending]);
 
-  return axiosAPIPrivate;
+  return {
+    axiosAPIPrivate,
+    isRequestPending
+  };
 };
 
 export default useAxiosPrivate;

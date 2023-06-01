@@ -6,14 +6,14 @@ import useAxiosPrivate from "../core/util/hook/useAxiosPrivate";
 import {Product} from "../core/api/apiTypes";
 import ProductList from "./list/ProductList";
 import SimpleLoader from "../core/component/simple-loader/SimpleLoader";
+import ProductsEmptyState from "./empty-state/ProductsEmptyState";
 
 function Products() {
   const [productsData, setProductData] = useState<Product[]>([]);
-  const axiosPrivate = useAxiosPrivate();
-  const [isRequestPending, setIsRequestPending] = useState<boolean>(true);
+  const {axiosAPIPrivate, isRequestPending} = useAxiosPrivate();
 
   useEffect(() => {
-    axiosPrivate
+    axiosAPIPrivate
       .get<Product[]>("/products")
       .then((res) => {
         setProductData(res.data);
@@ -21,20 +21,21 @@ function Products() {
       .catch((error) => {
         console.log(error);
       });
-    setIsRequestPending(false);
-  }, [axiosPrivate]);
+  }, [axiosAPIPrivate]);
 
   if (isRequestPending) return <SimpleLoader />;
 
-  if (productsData.length === 0) return <h1>No products found</h1>;
+  if (productsData) {
+    return (
+      <div className="products">
+        <h1 className="products__title">Products</h1>
 
-  return (
-    <div className="products">
-      <h1 className="products__title">Products</h1>
+        <ProductList productsData={productsData} />
+      </div>
+    );
+  }
 
-      <ProductList productsData={productsData} />
-    </div>
-  );
+  return <ProductsEmptyState />;
 }
 
 export default Products;

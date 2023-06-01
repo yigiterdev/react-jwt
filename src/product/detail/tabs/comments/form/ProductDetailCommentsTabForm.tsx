@@ -26,7 +26,7 @@ function ProductDetailCommentsTabForm({product}: ProductDetailCommentsTabFormPro
         <label
           className="product-detail-comments-tab-form__item__label"
           htmlFor="comment-title">
-          Comment Title
+          Title
         </label>
         <Input name="comment-title" value={commentTitle} onChange={handleInputChange} />
       </div>

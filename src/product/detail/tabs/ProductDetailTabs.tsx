@@ -27,8 +27,8 @@ function ProductDetailTabs({product}: ProductDetailTabsProps) {
       items={PRODUCT_DETAIL_TABS}
       initialActiveTabIndex={0}>
       {[
-        <ProductDetailInformationTab product={product} />,
-        <ProductDetailCommentsTab product={product} />
+        <ProductDetailInformationTab key={PRODUCT_DETAIL_TABS[0].id} product={product} />,
+        <ProductDetailCommentsTab key={PRODUCT_DETAIL_TABS[0].id} product={product} />
       ]}
     </Tab>
   );
