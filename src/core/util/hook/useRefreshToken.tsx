@@ -7,7 +7,7 @@ const useRefreshToken = () => {
 
   const refreshToken = async (token?: string) => {
     const response = await axiosAPI.post<TokenRequestResponse>(
-      "/login",
+      "/token",
       {token: token || user?.refreshToken},
       {
         headers: {"Content-Type": "application/json"}

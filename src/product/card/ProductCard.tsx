@@ -20,6 +20,7 @@ function ProductCard({product}: ProductCardProps) {
       to={generatePath(ROUTES.PRODUCT_DETAILS, {
         id: product.id
       })}
+      state={product}
       className="product-card">
       <img
         className="product-card__image"

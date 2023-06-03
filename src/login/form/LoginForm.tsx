@@ -9,6 +9,7 @@ import {useAuthContext} from "../../core/context/auth/AuthContext";
 import {LoginRequestResponse} from "../../core/api/apiTypes";
 import {ROUTES} from "../../core/route/routes";
 import {axiosAPI} from "../../core/api/api";
+import {REFRESH_TOKEN_COOKIE, cookies} from "../../core/util/cookies";
 
 function LoginForm() {
   const {setUser} = useAuthContext();
@@ -67,9 +68,14 @@ function LoginForm() {
         }
       );
 
-      localStorage.setItem("refreshToken", response.data.refreshToken);
+      cookies.set(REFRESH_TOKEN_COOKIE, response.data.refreshToken, {
+        expires: new Date(Date.now() * 1000)
+      });
 
-      setUser(response.data);
+      setUser({
+        accessToken: response.data.accessToken,
+        refreshToken: response.data.refreshToken
+      });
       setUsername("");
       setPassword("");
       navigate({
